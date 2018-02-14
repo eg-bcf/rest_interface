@@ -62,13 +62,13 @@ def homePiston():
     self.pump.write(homeString.encode())
 
 def dispensePercent(amount):
-    steps = str(40 * 1600 * amount/100)
-    accel = str(round(int(self.piston_a.get()) * 65536 / 400000000))
-    dispenseString = '/' + str(self.piston_address.get()) + 'V' + self.piston_v.get() + 'L'  + accel + 'P' + steps + 'R\r\n'
+    steps = str(40 * 1600 * int(amount)/100)
+    accel = str(round(int(100000) * 65536 / 400000000))
+    dispenseString = '/1' + 'V' + '16000' + 'L'  + accel + 'P' + steps + 'R\r\n'
     self.pump.write(dispenseString.encode())
 
 def aspiratePercent(amount):
-    steps = str(40 * 1600 * amount/100))
+    steps = str(40 * 1600 * int(amount)/100)
     accel = str(round(100000 * 65536 / 400000000))
     aspirateString = '/1' + 'V' + "16000" + 'L'  + accel + 'D' + steps + 'R\r\n'
     self.pump.write(aspirateString.encode())
